@@ -1,0 +1,63 @@
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el encabezado */
+h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+/* Estilos para el formulario y el botón */
+label {
+    display: block;
+    margin: 20px 0;
+}
+
+input[type="number"] {
+    padding: 10px;
+    width: 100px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el resultado */
+p {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Animación para el resultado */
+#resultado {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

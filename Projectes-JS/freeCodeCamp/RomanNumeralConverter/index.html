@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversor Decimal a Romano</title>
+    <!-- Incluye Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Conversor Decimal a Romano</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="decimalInput">Introduce un número decimal:</label>
+                    <input type="number" class="form-control" id="decimalInput" min="1" step="1">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="convertirARomano()">Convertir</button>
+                <p class="text-center mt-3">Resultado en números romanos: <span id="resultado"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluye Bootstrap JS y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Incluye tu archivo JavaScript -->
+    <script src="romanNumeralConverter.js"></script>
+
+    <script>
+        function convertirARomano() {
+            const decimalInput = document.getElementById("decimalInput");
+            const resultadoSpan = document.getElementById("resultado");
+
+            const numDecimal = parseInt(decimalInput.value);
+
+            if (!isNaN(numDecimal) && numDecimal >= 1) {
+                const numRomano = convertToRoman(numDecimal);
+                resultadoSpan.textContent = numRomano;
+            } else {
+                resultadoSpan.textContent = "Introduce un número válido (mayor o igual a 1).";
+            }
+        }
+    </script>
+</body>
+</html>
