@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ROT13 Decoder</title>
+</head>
+<body>
+    <h1>ROT13 Decoder</h1>
+    <p>Introduce un texto para decodificar usando ROT13:</p>
+    <textarea id="textoEntrada" rows="4" cols="50"></textarea>
+    <button onclick="decodificarROT13()">Decodificar</button>
+    <p>Resultado:</p>
+    <p id="resultado"></p>
+
+    <!-- Incluye el archivo JavaScript externo -->
+    <script src="cifradoCesar.js"></script>
+
+    <script>
+        function decodificarROT13() {
+            var textoEntrada = document.getElementById("textoEntrada").value;
+            var resultado = rot13(textoEntrada);
+            document.getElementById("resultado").textContent = resultado;
+        }
+    </script>
+</body>
+</html>
