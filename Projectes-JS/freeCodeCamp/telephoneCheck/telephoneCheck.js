@@ -10,7 +10,7 @@ function telephoneCheck(str) {
     // Si no coincideix amb el patró, retornem false .
     return false;
 }
-console.log(telephoneCheck("555-555-5555"));
+telephoneCheck("555-555-5555");
 
 
 

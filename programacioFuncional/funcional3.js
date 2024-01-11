@@ -74,7 +74,6 @@ const res3 = arr
     .map((item) => Math.round(item));
 console.log(res2 + "Arr");
 
-
 const res4= [];
 for(let i= 0; i < array10.length; i++){
     if(array10[i] > 2){

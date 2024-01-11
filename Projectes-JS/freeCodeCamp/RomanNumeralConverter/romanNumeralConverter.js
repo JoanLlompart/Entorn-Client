@@ -4,7 +4,8 @@ function convertToRoman(num) {
     if (typeof num != 'number' || !Number.isInteger(num)) {
         return null;
     }
-
+    if(num >= 4000) return console.log("Numero no valido, introduce un numero menor de 4000");
+    
     let result = "";
     while (num > 0) {
         if (num >= 1000) {

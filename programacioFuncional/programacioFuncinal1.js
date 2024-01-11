@@ -1,9 +1,7 @@
 const mutiplyByTwo = () => {
     return x *2;
 };
-
 let n = 1;
-
 function increment() {
     n += 1;
 }

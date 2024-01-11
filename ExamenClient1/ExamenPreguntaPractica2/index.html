@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canviar color de fons</title>
+    </head>
+<body>
+    <script>
+        // Funció per obtenir el color guardat a localStorage
+        function obtenirUltimColor() {
+            return localStorage.getItem('colorFons');
+        }
+        // Funció per establir el color a localStorage
+        function guardarColor(color) {
+            localStorage.setItem('colorFons', color);
+        }
+
+        // Funció per generar un color hexadecimal aleatori
+        function getRandomColor() {
+            var characters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += characters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Funció per canviar el color de fons del cos de la pàgina
+        function changeBackgroundColor() {
+            var body = document.body;
+            var color = getRandomColor();
+            body.style.backgroundColor = color;
+            guardarColor(color); // Guardem el color a localStorage
+        }
+
+        // Comprovem si hi ha un color guardat a localStorage i el restaurem si existeix
+        var colorGuardat = obtenirUltimColor();
+        if (colorGuardat) {
+            document.body.style.backgroundColor = colorGuardat;
+        }
+
+        document.body.addEventListener("click", changeBackgroundColor);
+        document.addEventListener("keydown", changeBackgroundColor);
+    </script>
+</body>
+
+</html>

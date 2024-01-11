@@ -1,0 +1,19 @@
+{
+  "name": "exemple-inicial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joan Llompart Socias",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "prettier": " ^3.0.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  }
+}
