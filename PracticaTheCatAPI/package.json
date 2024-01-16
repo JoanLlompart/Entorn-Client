@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@thatapicompany/thecatapi": "^1.0.2"
+  },
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
+}
