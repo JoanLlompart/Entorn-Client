@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Agregar un evento de cambio al elemento select
     selectElement.addEventListener('change', function () {
-        
+
         const selectedBreedId = selectElement.value;
 
         // Hacer una solicitud a la API para obtener la imagen de la raza seleccionada
