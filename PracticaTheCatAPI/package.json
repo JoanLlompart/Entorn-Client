@@ -4,5 +4,14 @@
   },
   "devDependencies": {
     "parcel": "^2.11.0"
-  }
+  },
+  "name": "practicathecatapi",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel src/index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
