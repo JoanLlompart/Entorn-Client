@@ -1,61 +1,67 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const catImage = document.getElementById('imatge');
+    const selectElement = document.getElementById('breeds');
+    const imatgeCat = document.getElementById('imatge');
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
+    const apiKey = 'live_GgbvvQT25dVUAsuZH69auOwR9PsUHCAGUnR3Ij6yY8HQWINBvz90kghPdotnztK2'; 
 
-    let currentIndex = 0;
-    let catImages = [];
+    // Función para actualizar la imagen y el historial
+    function updateImageAndHistory(selectedBreedId) {
+        // Hacer una solicitud a la API para obtener la imagen de la raza seleccionada o cualquier raza si no se selecciona
+        const apiUrl = selectedBreedId ? `https://api.thecatapi.com/v1/images/search?breed_ids=${selectedBreedId}` : 'https://api.thecatapi.com/v1/images/search';
+        
+        fetch(apiUrl, {
+            headers: {
+                'x-api-key': apiKey
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Verificar si se recibió una respuesta válida
+            if (data && data.length > 0) {
+                const imageUrl = data[0].url;
+                // Mostrar la imagen en el elemento de la imagen
+                imatgeCat.src = imageUrl;
 
-    // Función para cargar imágenes de gatos desde la API
-    async function loadCatImages() {
-        try {
-            const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=5');
-            const data = await response.json();
-            catImages = data;
-            updateCatImage();
-        } catch (error) {
-            console.error('Error al cargar las imágenes de gatos:', error);
-        }
+                // Agregar una entrada al historial con la URL modificada
+                const newUrl = selectedBreedId ? `/cat?breed_id=${selectedBreedId}` : '/cat';
+                history.pushState({ breed: selectedBreedId }, null, newUrl);
+            } else {
+                console.error('No se pudo obtener la imagen de la raza seleccionada.');
+            }
+        })
+        .catch(error => console.error('Error al obtener la imagen de la raza seleccionada:', error));
     }
 
-    // Función para actualizar la imagen de gato en la página
-    function updateCatImage() {
-        const currentCat = catImages[currentIndex];
-        catImage.src = currentCat.url;
-
-        // Agregar la entrada al historial cuando cambia la imagen
-        const newState = { catIndex: currentIndex };
-        const newTitle = `Imagen ${currentIndex + 1}`;
-        const newURL = `/image/${currentIndex + 1}`;
-
-        history.pushState(newState, newTitle, newURL);
-    }
-
-    // Función para manejar los clics en los botones de navegación
-    function handleNavigationClick(direction) {
-        if (direction === 'prev' && currentIndex > 0) {
-            currentIndex--;
-        } else if (direction === 'next' && currentIndex < catImages.length - 1) {
-            currentIndex++;
+    // Hacer una solicitud a la API para obtener la lista de razas de gatos
+    fetch('https://api.thecatapi.com/v1/breeds', {
+        headers: {
+            'x-api-key': apiKey
         }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Iterar sobre las razas y agregar opciones al elemento select
+        data.forEach(breed => {
+            const option = document.createElement('option');
+            option.value = breed.id;
+            option.text = breed.name;
+            selectElement.appendChild(option);
+        });
 
-        updateCatImage();
-    }
-
-    // Manejar eventos de clic en los botones de navegación
-    prevButton.addEventListener('click', () => handleNavigationClick('prev'));
-    nextButton.addEventListener('click', () => handleNavigationClick('next'));
-
-    // Escuchar el evento popstate para manejar cambios en la navegación
-    window.addEventListener('popstate', function (event) {
-        const newState = event.state;
-
-        if (newState && newState.catIndex !== undefined) {
-            currentIndex = newState.catIndex;
-            updateCatImage();
+        // Verificar la URL actual para establecer la raza seleccionada
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedBreedIdFromURL = urlParams.get('breed_id');
+        if (selectedBreedIdFromURL) {
+            selectElement.value = selectedBreedIdFromURL;
+            updateImageAndHistory(selectedBreedIdFromURL);
         }
+    })
+    .catch(error => console.error('Error al obtener las razas de gatos:', error));
+
+    // Agregar un evento de cambio al elemento select
+    selectElement.addEventListener('change', function () {
+        const selectedBreedId = selectElement.value;
+        updateImageAndHistory(selectedBreedId);
     });
-
-    // Cargar las imágenes de gatos al cargar la página
-    loadCatImages();
 });
