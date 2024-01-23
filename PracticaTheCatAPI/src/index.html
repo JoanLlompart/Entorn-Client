@@ -20,19 +20,17 @@
         </nav>
     </header>
     <div id="catView">
-        <h1>CAT</h1>
-        <label for="breeds">Filtrar por raza: </label>
+        <h1>Cat </h1>
+        <label for="breeds">Elige una raza </label>
 
         <select id="breeds">
-            <!-- Opciones de razas (pueden ser generadas dinámicamente) -->
-            <option value="">Any</option>
+            <option value="">Elige una raza</option>
         </select>
         <img src="" alt="Imagen de la raza seleccionada">
-
     </div>
 
     <div id="breedsView">
-        <h1>BREED</h1>
+        <h1>Breeds</h1>
         <div id="pagination">
             <span>Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
             <button id="prevButton" data-direction="prev">&lt;Prev</button>
@@ -42,10 +40,9 @@
                 <option value="20">20</option>
                 <option value="40">40</option>
             </select>
-            <span>Results per page</span>
+            <span>Elements</span>
         </div>
         <ul id="breedsList">
-            <!-- Aquí se mostrarán las razas -->
         </ul>
     </div>
     <script src="proba.js"></script>
